@@ -1,0 +1,102 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+    background-color: aliceblue;
+    color: wheat;
+    
+}
+
+
+#display{
+    height: 25%;
+    text-align: right;
+    
+}
+
+#contenido_display{
+    position: relative;
+    bottom: -70px;
+    font-size: 40px;
+}
+
+#contenido_previo{
+    position: relative;
+    top: 10px;
+    font-size: 20px;
+    color:darkslategray
+}
+
+
+#container{
+    width: 1000px;
+    height: 550px;
+    margin: 20px auto;
+    
+}
+
+#keyboard{
+    height: 60%;
+}
+
+#tecladoAbajo{
+    margin-top: 1rem;
+    height:10%;
+        
+}
+
+#keyboard, #tecladoAbajo{
+    margin: 12px;
+    font-weight: bold;
+}
+
+#calculator{
+    width: 320px;
+    height: 520px;
+    background-color: black;
+    margin: 0 auto;
+    border-radius: 5%;
+    
+    
+}
+
+.subDiv2{
+    /* Specifies css grid to be used */
+  display:grid; 
+  /* Specifies the number of columns and sizes in the grid */
+  grid-template-columns: 1fr 1fr;
+  /* Specifies spacing between grid cells */
+  grid-gap:1rem;
+}
+
+.operator, .number, .cero, .principal{
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.operator{
+    background-color: orange;
+    
+}
+
+.principal{
+    background-color: dimgray;
+   
+}
+
+ 
+
+.grid {
+  /* Specifies css grid to be used */
+  display:grid; 
+  /* Specifies the number of columns and sizes in the grid */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* Specifies spacing between grid cells */
+  grid-gap:1rem;
+    justify-items: center;
+  align-items: center;
+    
+
+}

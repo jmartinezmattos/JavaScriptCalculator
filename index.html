@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapins.com/css?family=Open+Sans:600,700" rel = stylesheet>
+        <title>Calculadora</title>        
+    </head>
+    <body>
+
+        <div id=container >
+            <div id=calculator>
+                <div id='display'>
+                    <div id=contenido_previo></div>
+                    <div id=contenido_display>0</div>
+                </div>
+               
+                <div class = grid id=keyboard>
+                    <button class="principal" id="ac" >
+                        AC
+                    </button>
+                    <button class="principal" id="masmenos">
+                        +/-
+                    </button>
+                    <button class="principal" id=prcnt>
+                        %
+                    </button>
+                    <button class="operator" id=dividir>
+                        &#247;
+                    </button>
+                    <button class=number id="seven">7</button>
+                    <button class="number" id='eight'>8</button>
+                    <button class="number" id='nine'>9</button>
+                    <button class="operator" id='mult'>x</button>
+                    <button id=four class="number">4</button>
+                    <button id=five class="number">5</button>
+                    <button id=six class="number">6</button>
+                    <button id=menos class="operator">-</button>
+                    <button id=one class="number">1</button>
+                    <button id=two class="number">2</button>
+                    <button id=three class="number">3</button>
+                    <button id=mas class="operator">+</button>
+                </div>
+                <div class="subDiv2" id=tecladoAbajo>
+                    <button class="cero" id='cero'>0</button>
+                    <div class="subDiv2" id=subDivAbajo>
+                        <button class=number id='decimal'>.</button>
+                        <button id=igual class="operator">=</button>
+                    </div>
+
+                </div>
+        </div>
+        </div>
+        
+        <script>
+                var currentNumber = 0;
+                var previousNumber = 0;
+                var operator = "";
+                var decimal=0;
+                                
+                function editDisplay(){
+                    document.getElementById('contenido_display').innerHTML = currentNumber;
+                }
+            
+                function insertNumber(input){
+                    
+                    if(decimal===0){
+                    currentNumber = currentNumber*10 + input;
+                    }
+                    else{
+                        currentNumber= currentNumber +  input/(Math.pow(10,decimal));
+                        decimal++;
+                    }
+                    editDisplay();
+                }
+
+            
+                
+                function printPrev(){
+                    document.getElementById("contenido_previo").innerHTML = previousNumber;
+                }
+            
+                function insertOperation(oper){
+            
+                    if(operator === ""){
+                        previousNumber = currentNumber;
+                        currentNumber = 0;
+                        decimal=0;
+                    }
+                    
+                    operator = oper;
+                    document.getElementById('contenido_display').innerHTML = operator;
+                    printPrev();
+
+                }
+            
+                function operar(){
+                    var result=0;
+                    
+                    switch(operator){
+                        case "-":
+                            result = previousNumber - currentNumber;  
+                            break;
+                        case "+":
+                            result = previousNumber + currentNumber;
+                            break;
+                        case "/":
+                            result = previousNumber/currentNumber;
+                            break;
+                        case "x":
+                            result = previousNumber*currentNumber;
+                            break;
+                    }
+                    
+                     document.getElementById("contenido_display").innerHTML = result;
+                    
+                    decimal = 0;
+                    currentNumber = result;
+                    previousNumber = 0;
+                    operator = "";
+                    document.getElementById("contenido_previo").innerHTML = "";
+                    
+                    return result;
+                    
+    
+                }
+            
+                function buttonAC(){
+                    if(currentNumber===0){
+                        previousNumber = 0;
+                        operator = "";
+                        document.getElementById("contenido_display").innerHTML = currentNumber;
+                         document.getElementById("contenido_previo").innerHTML = "";
+                    }else{
+                        currentNumber = 0;
+                        document.getElementById("contenido_display").innerHTML = currentNumber;
+                    }
+                    decimal=0;
+                    
+                }
+            
+                function masMenosButton(){
+                    currentNumber = currentNumber*-1;
+                    document.getElementById("contenido_display").innerHTML = currentNumber;
+                }
+            
+                function decimalButton(){
+                    if(decimal===0){
+                       decimal=1;
+                    }
+                }
+            
+                function porcentaje(){
+                    previousNumber = currentNumber;
+                    document.getElementById("contenido_previo").innerHTML = "";
+                    currentNumber = currentNumber/100;
+                    document.getElementById("contenido_display").innerHTML = currentNumber;
+                }
+            
+               
+                document.getElementById("cero").onclick= function (){insertNumber(0)};
+                document.getElementById("one").onclick= function (){insertNumber(1)};
+                document.getElementById("two").onclick= function (){insertNumber(2)};
+                document.getElementById("three").onclick= function (){insertNumber(3)};
+                document.getElementById("four").onclick= function (){insertNumber(4)};
+                document.getElementById("five").onclick= function (){insertNumber(5)};
+                document.getElementById("six").onclick= function (){insertNumber(6)};
+                document.getElementById("seven").onclick= function (){insertNumber(7)};
+                document.getElementById("eight").onclick= function (){insertNumber(8)};
+                document.getElementById("nine").onclick= function (){insertNumber(9)};
+            
+            
+                document.getElementById("menos").onclick= function (){insertOperation("-")};
+                document.getElementById("mas").onclick= function (){insertOperation("+")};
+                document.getElementById("mult").onclick= function (){insertOperation("x")};
+                document.getElementById("dividir").onclick= function (){insertOperation("/")};
+                document.getElementById("prcnt").onclick= function (){porcentaje()};
+            
+                document.getElementById("igual").onclick=function (){operar()}
+                
+                document.getElementById("ac").onclick=function (){buttonAC()}
+                
+                document.getElementById("masmenos").onclick=function (){masMenosButton()}
+                
+                document.getElementById("decimal").onclick=function (){decimalButton()}
+                
+            
+            
+                
+                
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
