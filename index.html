@@ -83,8 +83,13 @@
             
                     if(operator === ""){
                         previousNumber = currentNumber;
-                        currentNumber = 0;
+                        currentNumber=0;
                         decimal=0;
+                    }
+                    else{
+                        operar();
+                        previousNumber = currentNumber;
+                        currentNumber = 0;
                     }
                     
                     operator = oper;
@@ -94,30 +99,36 @@
                 }
             
                 function operar(){
-                    var result=0;
                     
-                    switch(operator){
-                        case "-":
-                            result = previousNumber - currentNumber;  
-                            break;
-                        case "+":
-                            result = previousNumber + currentNumber;
-                            break;
-                        case "/":
-                            result = previousNumber/currentNumber;
-                            break;
-                        case "x":
-                            result = previousNumber*currentNumber;
-                            break;
+                    if(operator!=""){
+                       
+                        var result=0;
+
+                        switch(operator){
+                            case "-":
+                                result = previousNumber - currentNumber;  
+                                break;
+                            case "+":
+                                result = previousNumber + currentNumber;
+                                break;
+                            case "/":
+                                result = previousNumber/currentNumber;
+                                break;
+                            case "x":
+                                result = previousNumber*currentNumber;
+                                break;
+                        }
+                    
+                    
+                        document.getElementById("contenido_display").innerHTML = result;
+
+                        decimal = 0;
+                        currentNumber = result;
+                        previousNumber = 0;
+                        operator = "";
+                        document.getElementById("contenido_previo").innerHTML = "";
+
                     }
-                    
-                     document.getElementById("contenido_display").innerHTML = result;
-                    
-                    decimal = 0;
-                    currentNumber = result;
-                    previousNumber = 0;
-                    operator = "";
-                    document.getElementById("contenido_previo").innerHTML = "";
                     
                     return result;
                     
